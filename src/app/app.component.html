@@ -1,1 +1,6 @@
-<app-header></app-header>
+
+
+<select  id="" [(ngModel)]="selectVal" (change)="call(selectVal)">
+    <option value=`${a.login}` *ngFor="let a of books">{{a.login}}</option>
+</select>
+
