@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ApiReadService } from './api-read.service';
+import { ApiReadService } from './Services/api-read.service';
 
 describe('ApiReadService', () => {
   let service: ApiReadService;

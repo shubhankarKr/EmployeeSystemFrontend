@@ -1,0 +1,21 @@
+
+.mainContainer{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.cards{
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+.cards > img{
+    border-radius: 100px;
+    filter:  drop-shadow(5px 10px 4px #000);
+    margin: 15px 0px;
+}

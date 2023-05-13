@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiReadService } from './api-read.service';
+import { ApiReadService } from './Services/api-read.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { ApiReadService } from './api-read.service';
 })
 export class AppComponent  implements OnInit{
   ngOnInit(){
-    this.getBooks();
+    
   }
   title = 'EmployeeSystemFrontend';
   constructor(private bookService: ApiReadService){}
