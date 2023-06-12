@@ -1,28 +1,27 @@
 import { Injectable } from '@angular/core';
-import {HttpClient,HttpErrorResponse, HttpHeaders  } from '@angular/common/http'
-import { Observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Employee } from '../model/Employee';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiReadService {
+export class EmployeeService {
 
-  constructor(private http :HttpClient ) { }
+  constructor(private http:HttpClient) { }
 
-  login(email:string,password:string):Observable<string>{
-    const body={'email':email,'password':password};
-    let url='http://localhost:8080/employee/login';
-    return this.http.post<string>(url,body).pipe(
-      tap(res=>console.log('res vavlue '+JSON.stringify(res))),
-      catchError(this.handleError)
+  findSingleEmployeeDetails(id:number):Observable<Employee>{
+    let url=`http://localhost:8080/employee/getEmployeeById/${id}`;
+    return this.http.get<Employee>(url).pipe(
+      tap((res :Employee) => console.log('data fetched single Employee '+JSON.stringify(res)),
+      catchError(this.handleError))
     );
+    console.log(id);
   }
 
   getAllEmployees(): Observable<Employee[]>{
     return this.http.get<Employee[]>('http://localhost:8080/employee/getAllEmployee',{responseType: 'json'}).pipe(
-        tap((res :Employee[]) => console.log('data fetched '+JSON.stringify(res)),
+        tap((res :Employee[]) => console.log('data fetched All Employees'+JSON.stringify(res)),
         catchError(this.handleError))
         )
     ;
@@ -44,5 +43,4 @@ export class ApiReadService {
     }
     return throwError(()=>errMsg);
   }
-
 }

@@ -1,0 +1,8 @@
+.card2 :hover{
+    background-color : rgb(225, 213, 195);
+    /* transform: scale(1.05); */
+}
+
+.card{
+    background-color:azure;
+}
