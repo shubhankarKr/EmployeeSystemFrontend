@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../model/Employee';
 import { ActivatedRoute, Route } from '@angular/router';
-import { EmployeeService } from '../service/employee.service';
+import { EmployeeServices } from '../services/employee.service';
 
 @Component({
   selector: 'app-employee-details',
@@ -9,7 +9,7 @@ import { EmployeeService } from '../service/employee.service';
   styleUrls: ['./employee-details.component.css']
 })
 export class EmployeeDetailsComponent implements OnInit {
-  constructor(private route:ActivatedRoute,private api:EmployeeService){}
+  constructor(private route:ActivatedRoute,private api:EmployeeServices){}
   ngOnInit(): void {
     console.log(' single employee called');
     let id =this.route.snapshot.params['id'];

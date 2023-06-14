@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiReadService } from './Services/api-read.service';
 
 @Component({
   selector: 'app-root',

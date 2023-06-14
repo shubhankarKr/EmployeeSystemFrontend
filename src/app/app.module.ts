@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { ApiReadService } from './Services/api-read.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
@@ -29,7 +28,7 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ApiReadService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

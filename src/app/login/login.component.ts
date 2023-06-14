@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiReadService } from '../Services/api-read.service';
 import { Employee } from '../model/Employee';
-import { HttpHeaders } from '@angular/common/http';
+import { EmployeeServices } from '../services/employee.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +12,7 @@ export class LoginComponent implements OnInit {
   errorMessage!:string
   userLoginForm!:FormGroup
   messageFromLogin!:any
-  constructor(private fb:FormBuilder,private service:ApiReadService){}
+  constructor(private fb:FormBuilder,private service:EmployeeServices){}
   ngOnInit(): void {
     this.userLoginForm=this.fb.group({
       email :['',Validators.email],
@@ -27,14 +26,6 @@ export class LoginComponent implements OnInit {
       next : res=>this.employees=res,
       error : er=> this.errorMessage
     })
-  }
-
-  login(){
-    this.service.login('shubhankar@gmail.com','pass').subscribe({
-      next : res=>(this.messageFromLogin=res),
-      error : err=>err
-    })
-    
   }
   
 }
