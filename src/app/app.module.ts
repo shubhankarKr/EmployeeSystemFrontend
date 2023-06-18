@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
     HeaderComponent,
     FooterComponent,
     HomepageComponent,
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+    CreateEmployeeComponent
    
   ],
   imports: [

@@ -17,7 +17,6 @@ export class EmployeeServices {
       tap((res :Employee) => console.log('data fetched single Employee '+JSON.stringify(res)),
       catchError(this.handleError))
     );
-    console.log(id);
   }
 
   getAllEmployees(): Observable<Employee[]>{
@@ -27,6 +26,14 @@ export class EmployeeServices {
         catchError(this.handleError))
         )
     ;
+  }
+
+  crateEmployee(employee:Employee):Observable<Employee>{
+    let url=`http://${this.hostName}/employee/create`;
+    return this.http.post<Employee>(url,employee).pipe(
+      tap((res :Employee) => console.log('data fetched create Employee '+JSON.stringify(res)),
+      catchError(this.handleError))
+    );
   }
 
   private handleError(err: HttpErrorResponse): Observable<any> {

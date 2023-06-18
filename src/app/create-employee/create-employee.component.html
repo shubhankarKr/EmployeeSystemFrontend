@@ -1,0 +1,59 @@
+<div class="my-5">
+    <form [formGroup]="userForm" class="form-horizontal">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" formControlName="firstName" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="firstName">Last Name</label>
+            <input type="text" formControlName="lastName" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="firstName">Street</label>
+            <input type="text" formControlName="street" class="form-control">
+        </div>
+    
+        <div class="form-group">
+            <label for="firstName">City</label>
+            <input type="text" formControlName="city" class="form-control">
+        </div>
+    
+        <div class="form-group">
+            <label for="firstName">PinCode</label>
+            <input type="number" formControlName="pinCode" class="form-control">
+        </div>
+    
+        <div class="form-group">
+            <label for="firstName">Gender</label>
+            <input type="text" formControlName="gender" class="form-control">
+        </div>
+    
+        <div class="form-group">
+            <label for="firstName">Email</label>
+            <input type="text" formControlName="email" class="form-control">
+        </div>
+    
+        <div class="form-group">
+            <label for="firstName">Designation</label>
+            <input type="text" formControlName="designation" class="form-control">
+        </div>
+    
+        <div formArrayName="skills">
+            <h2>skills</h2>
+            <button type="button" (click)="addSkills()">+ Add another skill</button>
+        
+            <div *ngFor="let data of getSkills().controls; let i=index">
+              <!-- The repeated alias template -->
+                  <label for="alias-{{ i }}">Alias:</label>
+                  <input id="alias-{{ i }}" type="text" [formControlName]="i">
+                  <button type="button" (click)="deleteSkills(i)">Delete</button>
+            </div>
+          </div>
+        <button type="submit" (click)="onSubmit()">Submit</button>
+    </form>
+    <div *ngIf="newEmp" style="background-color: rgb(249, 249, 249);border-radius: 10px;padding-left: 10px;color: rgb(13, 197, 13);">
+        Employee {{newEmp.firstName}} created successfully with Id: {{newEmp.id}}
+    </div>
+</div>
+
+

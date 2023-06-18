@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../model/Employee';
 import { EmployeeServices } from '../services/employee.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -11,7 +10,7 @@ import { Router } from '@angular/router';
 export class HomepageComponent  implements OnInit {
   employeeList!:Employee[];
   errorMessage!:string
-  constructor(private api:EmployeeServices,private route:Router){}
+  constructor(private api:EmployeeServices){}
 
   ngOnInit(): void {
     this.api.getAllEmployees().subscribe(

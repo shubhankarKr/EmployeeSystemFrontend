@@ -1,5 +1,13 @@
-<p>employee-details works!</p>
 <div *ngIf="employee">
-    {{employee.firstName}}
+    <div class="row_ele">
+        <div class="left">
+            First Name :
+        </div>
+        <div class="right">
+            {{employee.firstName}}
+            {{employee.lastName}}
+        </div>
+    </div>
+    
 </div>
 
