@@ -23,6 +23,7 @@ export class CreateEmployeeComponent implements OnInit{
       gender:[],
       email:[],
       designation:[],
+      password:[''],
       skills:  this.fb.array([
         this.fb.control('')
       ])
@@ -51,8 +52,9 @@ export class CreateEmployeeComponent implements OnInit{
     let gender=this.userForm.get('gender')?.value;
     let email=this.userForm.get('email')?.value;
     let designation=this.userForm.get('designation')?.value;
+    let password=this.userForm.get('password')?.value;
     let skills:{skillName:string}[]=this.getSkillsArrary();
-    let e=new Employee(firstName, lastName, street, city, pinCode, gender, email, designation); 
+    let e=new Employee(firstName, lastName, street, city, pinCode, gender, email, designation,password); 
     e.skills=skills;
 
     this.empService.crateEmployee(e).subscribe({

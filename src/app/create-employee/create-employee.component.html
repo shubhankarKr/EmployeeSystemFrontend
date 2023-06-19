@@ -38,6 +38,11 @@
             <input type="text" formControlName="designation" class="form-control">
         </div>
     
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" formControlName="password" class="form-control">
+        </div>
+
         <div formArrayName="skills">
             <h2>skills</h2>
             <button type="button" (click)="addSkills()">+ Add another skill</button>
@@ -49,6 +54,8 @@
                   <button type="button" (click)="deleteSkills(i)">Delete</button>
             </div>
           </div>
+        
+    
         <button type="submit" (click)="onSubmit()">Submit</button>
     </form>
     <div *ngIf="successMessage" style="background-color: rgb(249, 249, 249);border-radius: 10px;padding-left: 10px;color: rgb(13, 197, 13);">

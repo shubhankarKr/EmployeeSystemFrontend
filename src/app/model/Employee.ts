@@ -10,7 +10,6 @@ export class Employee {
 	 password!: string;
 	 designation!: string
 	skills!: { skillName: string }[]
-
 	constructor(
 		firstName: string, 
 		lastName: string,
@@ -19,7 +18,7 @@ export class Employee {
 		pinCode: number,
 		gender: string,
 		email: string,
-		designation: string) {
+		designation: string,password:string) {
 		this.firstName=firstName;
 		this.lastName=lastName;
 		this.street=street;
@@ -27,7 +26,8 @@ export class Employee {
 		this.pinCode=pinCode;
 		this.gender=gender;
 		this.email=email;
-		this.designation=designation
+		this.designation=designation,
+		this.password=password
 	}
 	
 }
