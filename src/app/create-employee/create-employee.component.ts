@@ -10,7 +10,8 @@ import { EmployeeServices } from '../services/employee.service';
 })
 export class CreateEmployeeComponent implements OnInit{
   userForm!:FormGroup
-  newEmp!:Employee
+  successMessage!:string
+  erroMessage!:string
   constructor(private fb:FormBuilder,private empService:EmployeeServices){}
   ngOnInit(): void {
     this.userForm=this.fb.group({
@@ -40,6 +41,8 @@ export class CreateEmployeeComponent implements OnInit{
     control.removeAt(i);
   }
   onSubmit(){
+    this.successMessage='';
+    this.erroMessage='';
     let firstName=this.userForm.get('firstName')?.value;
     let lastName=this.userForm.get('lastName')?.value;
     let street=this.userForm.get('street')?.value;
@@ -53,13 +56,21 @@ export class CreateEmployeeComponent implements OnInit{
     e.skills=skills;
 
     this.empService.crateEmployee(e).subscribe({
-      next : (res)=>{
-        this.newEmp=res;
-      },
-      error:(err)=>{
-        console.log(err);    
+      next : res=>{
+        console.log(res);
+        console.log(res.response);
+        
+
+        this.successMessage=res.response
+      },  
+      error:err=>{
+        // console.log('error has come '+JSON.stringify(err));
+        this.erroMessage=err.error.message;      
+        console.log(this.erroMessage);
+          
       }
-    })
+    }
+    )
   }
   getSkillsArrary() {
     let res:{skillName:string}[]=[];
