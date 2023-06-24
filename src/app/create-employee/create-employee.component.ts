@@ -6,83 +6,90 @@ import { EmployeeServices } from '../services/employee.service';
 @Component({
   selector: 'app-create-employee',
   templateUrl: './create-employee.component.html',
-  styleUrls: ['./create-employee.component.css']
+  styleUrls: ['./create-employee.component.css'],
 })
-export class CreateEmployeeComponent implements OnInit{
-  userForm!:FormGroup
-  successMessage!:string
-  erroMessage!:string
-  constructor(private fb:FormBuilder,private empService:EmployeeServices){}
+export class CreateEmployeeComponent implements OnInit {
+  userForm!: FormGroup;
+  successMessage!: string;
+  erroMessage!: string;
+  constructor(private fb: FormBuilder, private empService: EmployeeServices) {}
   ngOnInit(): void {
-    this.userForm=this.fb.group({
-      firstName:[],
-      lastName:[],
-      street :[],
-      city:[],
-      pinCode:[],
-      gender:[],
-      email:[],
-      designation:[],
-      password:[''],
-      skills:  this.fb.array([
-        this.fb.control('')
-      ])
+    this.userForm = this.fb.group({
+      firstName: [],
+      lastName: [],
+      street: [],
+      city: [],
+      pinCode: [],
+      gender: [],
+      email: [],
+      designation: [],
+      password: [''],
+      skills: this.fb.array([this.fb.control('')]),
     });
   }
 
-  getSkills(){
+  getSkills() {
     return this.userForm.get('skills') as FormArray;
   }
 
-  addSkills(){
+  addSkills() {
     this.getSkills().push(this.fb.control(''));
   }
-  deleteSkills(i:number){
+  deleteSkills(i: number) {
     const control = <FormArray>this.userForm.controls['skills'];
     control.removeAt(i);
   }
-  onSubmit(){
-    this.successMessage='';
-    this.erroMessage='';
-    let firstName=this.userForm.get('firstName')?.value;
-    let lastName=this.userForm.get('lastName')?.value;
-    let street=this.userForm.get('street')?.value;
-    let city=this.userForm.get('city')?.value;
-    let pinCode=this.userForm.get('pinCode')?.value;
-    let gender=this.userForm.get('gender')?.value;
-    let email=this.userForm.get('email')?.value;
-    let designation=this.userForm.get('designation')?.value;
-    let password=this.userForm.get('password')?.value;
-    let skills:{skillName:string}[]=this.getSkillsArrary();
-    let e=new Employee(firstName, lastName, street, city, pinCode, gender, email, designation,password); 
-    e.skills=skills;
+  onSubmit() {
+    this.successMessage = '';
+    this.erroMessage = '';
+    let firstName = this.userForm.get('firstName')?.value;
+    let lastName = this.userForm.get('lastName')?.value;
+    let street = this.userForm.get('street')?.value;
+    let city = this.userForm.get('city')?.value;
+    let pinCode = this.userForm.get('pinCode')?.value;
+    let gender = this.userForm.get('gender')?.value;
+    let email = this.userForm.get('email')?.value;
+    let designation = this.userForm.get('designation')?.value;
+    let password = this.userForm.get('password')?.value;
+    let skills: { skillName: string }[] = this.getSkillsArrary();
+    let e = new Employee(
+      firstName,
+      lastName,
+      street,
+      city,
+      pinCode,
+      gender,
+      email,
+      designation,
+      password
+    );
+    e.skills = skills;
 
     this.empService.crateEmployee(e).subscribe({
-      next : res=>{
+      next: (res) => {
         console.log(res);
         console.log(res.response);
-        
 
-        this.successMessage=res.response
-      },  
-      error:err=>{
-        // console.log('error has come '+JSON.stringify(err));
-        this.erroMessage=err.error.message;      
-        console.log(this.erroMessage);
-          
-      }
-    }
-    )
+        this.successMessage = res.response;
+      },
+      error: (err) => {
+        if (err.error.errors && err.error.errors[0].defaultMessage) {
+          this.erroMessage = err.error.errors[0].defaultMessage;
+        } else if (err.error) {
+          this.erroMessage = err.error.message;
+          console.log('An error occurred:', this.erroMessage);
+        }
+        console.log(err);
+      },
+    });
   }
   getSkillsArrary() {
-    let res:{skillName:string}[]=[];
-    let skills=this.userForm.controls['skills'] as FormArray;
-    console.log(' skills values ',skills.value);
+    let res: { skillName: string }[] = [];
+    let skills = this.userForm.controls['skills'] as FormArray;
+    console.log(' skills values ', skills.value);
     skills.value.forEach((element: string) => {
-      res.push({skillName:element});
+      res.push({ skillName: element });
     });
-   return res;
+    return res;
   }
-  
 }
-

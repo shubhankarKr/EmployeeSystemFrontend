@@ -9,6 +9,7 @@ import { EmployeeServices } from '../services/employee.service';
   styleUrls: ['./employee-details.component.css']
 })
 export class EmployeeDetailsComponent implements OnInit {
+  
   constructor(private route:ActivatedRoute,private api:EmployeeServices){}
   ngOnInit(): void {
     console.log(' single employee called');

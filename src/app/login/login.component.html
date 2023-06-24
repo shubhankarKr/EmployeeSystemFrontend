@@ -3,7 +3,8 @@
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control" formControlName="email">
-            <div class="alert alert-danger" *ngIf="(!userLoginForm.controls['email'].pristine || userLoginForm.controls['email'].dirty) && userLoginForm.controls['email'].invalid" >
+            <div class="alert alert-danger"
+                *ngIf="(!userLoginForm.controls['email'].pristine || userLoginForm.controls['email'].dirty) && userLoginForm.controls['email'].invalid">
                 Pleae enter valid email
             </div>
         </div>
@@ -18,18 +19,18 @@
 
     <div style="display:  flex;">
         <button type="button" class="btn btn-primary" (click)="getAllEmployees()"> Get All Emplyees</button>
-        <button type="button" class="btn btn-primary"  style="margin-left: 10px;">Login</button>
+        <button type="button" class="btn btn-primary" style="margin-left: 10px;">Login</button>
     </div>
 
     <div *ngIf="employees">
         <div *ngFor="let e of employees">
-            Employess Details 
+            Employess Details
             {{e.firstName}}
         </div>
     </div>
 
- 
-  <p *ngIf="messageFromLogin">  success {{messageFromLogin.code}}</p>
-  <br>
- fail {{errorMessage}}
+
+    <p *ngIf="messageFromLogin"> success {{messageFromLogin.code}}</p>
+    <br>
+    fail {{errorMessage}}
 </div>
