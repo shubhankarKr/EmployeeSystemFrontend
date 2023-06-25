@@ -12,7 +12,7 @@ import { sharedModel } from '../shared/sharedModel';
   providedIn: 'root',
 })
 export class EmployeeServices {
-  hostName: string = sharedModel.localHost;
+  hostName: string = sharedModel.serverHost;
   empList!: Employee[];
   error!: any;
   constructor(private http: HttpClient) {}

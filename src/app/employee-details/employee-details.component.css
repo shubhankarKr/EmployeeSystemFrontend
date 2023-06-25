@@ -1,0 +1,5 @@
+@media (max-width: 540px) {
+  .hello {
+    text-align: left !important;
+  }
+}
