@@ -36,7 +36,8 @@ export class EmployeeServices {
       .get<Employee[]>(url, { responseType: 'json' })
       .pipe(
         tap(
-          (res: Employee[]) => console.log('data fetched All Employees'),
+          (res: Employee[]) =>
+            console.log('data fetched All Employees ' + res.length),
           catchError(this.handleError)
         )
       );

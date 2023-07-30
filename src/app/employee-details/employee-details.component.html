@@ -1,5 +1,5 @@
 <!-- {{ employee | json}} -->
-<div class="row row-cols-sm-2 g-2 mx-auto align-items-center text-center">
+<div *ngIf="employee" class="row row-cols-sm-2 g-2 mx-auto align-items-center text-center">
     <div class="col-12 mx-auto">
         <div class="">
             <img src="./assets/imgs/Men.png" *ngIf="employee.gender == 'M'"
